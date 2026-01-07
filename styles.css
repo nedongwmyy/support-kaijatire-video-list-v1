@@ -68,6 +68,7 @@ header h1 {
     width: 100%;
     height: 422px; /* Maintains 16:9 aspect ratio for 750px width */
     overflow: hidden;
+    cursor: pointer;
 }
 
 .video-thumbnail img {
@@ -75,6 +76,36 @@ header h1 {
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: opacity 0.3s ease;
+}
+
+.video-thumbnail:hover img {
+    opacity: 0.8;
+}
+
+/* Play icon overlay */
+.play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 60px;
+    color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.video-thumbnail:hover .play-icon {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
 }
 
 /* Video info section */
@@ -99,25 +130,72 @@ header h1 {
     text-align: left;
 }
 
+/* Modal styles for video player */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    position: relative;
+    margin: 5% auto;
+    width: 853px;
+    height: 480px;
+    max-width: 90%;
+    max-height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close {
+    position: absolute;
+    top: -30px;
+    right: 0;
+    color: white;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.close:hover,
+.close:focus {
+    color: #ccc;
+}
+
 /* Responsive design for tablets and mobile devices */
 @media screen and (max-width: 1200px) {
     .container {
         max-width: 100%;
     }
-    
+
     .video-grid {
         width: 100%;
         padding: 15px;
     }
-    
+
     .video-card {
         width: 90%;
         max-width: 750px;
         margin: 0 auto 20px;
     }
-    
+
     .video-thumbnail {
         height: 250px;
+    }
+
+    .modal-content {
+        width: 90%;
+        max-width: 95%;
+        height: 50vh;
     }
 }
 
@@ -125,27 +203,43 @@ header h1 {
     header h1 {
         font-size: 2rem;
     }
-    
+
     .video-grid {
         padding: 10px;
         gap: 15px;
     }
-    
+
     .video-card {
         width: 95%;
         margin: 0 auto 15px;
     }
-    
+
     .video-thumbnail {
         height: 200px;
     }
-    
+
     .video-title {
         font-size: 1.1rem;
     }
-    
+
     .video-description {
         font-size: 0.9rem;
+    }
+
+    .play-icon {
+        font-size: 40px;
+        width: 60px;
+        height: 60px;
+    }
+
+    .modal-content {
+        width: 95%;
+        height: 45vh;
+    }
+
+    .close {
+        font-size: 28px;
+        top: -25px;
     }
 }
 
@@ -153,31 +247,47 @@ header h1 {
     header h1 {
         font-size: 1.5rem;
     }
-    
+
     .video-grid {
         padding: 8px;
         gap: 12px;
     }
-    
+
     .video-card {
         width: 98%;
         margin: 0 auto 12px;
     }
-    
+
     .video-thumbnail {
         height: 180px;
     }
-    
+
     .video-info {
         padding: 12px;
     }
-    
+
     .video-title {
         font-size: 1rem;
     }
-    
+
     .video-description {
         font-size: 0.85rem;
+    }
+
+    .play-icon {
+        font-size: 30px;
+        width: 50px;
+        height: 50px;
+    }
+
+    .modal-content {
+        width: 98%;
+        height: 40vh;
+    }
+
+    .close {
+        font-size: 24px;
+        top: -20px;
     }
 }
 
@@ -186,12 +296,18 @@ header h1 {
     .video-thumbnail {
         height: 150px;
     }
-    
+
     .video-title {
         font-size: 0.95rem;
     }
-    
+
     .video-description {
         font-size: 0.8rem;
+    }
+
+    .play-icon {
+        font-size: 25px;
+        width: 40px;
+        height: 40px;
     }
 }
