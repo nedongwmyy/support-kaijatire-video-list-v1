@@ -1,3 +1,5 @@
+<img width="1905" height="926" alt="image" src="https://github.com/user-attachments/assets/5520bb63-88fd-418f-bca4-b1e0f516f47e" />
+
 # Support-Kaijatire Video List
 
 This is a responsive YouTube-style video list website with the following features:
